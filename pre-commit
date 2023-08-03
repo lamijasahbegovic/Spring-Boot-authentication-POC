@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "Running git pre-commit hook"
+
+echo "Saving names of staged files ..."
+stagedFiles=`git diff --staged --name-only`
+
+echo "Running verifyGoogleJavaFormat ..."
+./gradlew verifyGoogleJavaFormat
+RESULT=$?
+
+if [ $RESULT -ne 0 ]
+then
+  echo "verifyGoogleJavaFormat failed, formatting ..."
+  ./gradlew googleJavaFormat
+  echo "Restaging formatted files ..."
+  for file in $stagedFiles; do
+    if test -f "$file"; then
+      git add $file
+    fi
+  done
+else
+  echo "verifyGoogleJavaFormat succeeded, all files formatted correctly."
+fi
