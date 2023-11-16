@@ -31,3 +31,24 @@ Or both at once:
 Stop the container:
 
 `docker-compose down --volume`
+
+### API documentation
+
+http://localhost:8080/swagger-ui/index.html
+
+### Future improvements
+
+- Add tests
+- Implement role based access
+- Improve CORS settings
+- Investigate and utilize actuator
+- Investigate state management in Spring Security
+- Write tests for configuration classes
+- Switch to Flyway? Rely completely on ORM?
+- Add email verification
+- Add password reset option
+- Add option to change email
+- Add Google SSO
+- Move old and new password matching to annotation
+- Move new password validation to mapper
+- Implement a complex account search (with parameter validation)
